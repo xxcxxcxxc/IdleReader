@@ -37,6 +37,7 @@ public class FgMovieFragment extends Fragment implements IMoviesView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fg_movie, null);
+
     }
 
 

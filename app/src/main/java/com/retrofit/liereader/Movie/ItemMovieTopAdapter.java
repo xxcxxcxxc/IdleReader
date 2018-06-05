@@ -23,6 +23,7 @@ import java.util.List;
  * Created by apple on 18/6/5.
  */
 
+
 public class ItemMovieTopAdapter extends RecyclerView.Adapter<ItemMovieTopAdapter.ViewHolder> {
 
     private List<MoviesBean.SubjectsBean> objects = new ArrayList<MoviesBean.SubjectsBean>();
