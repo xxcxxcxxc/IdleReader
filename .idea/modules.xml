@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/IdleReader.iml" filepath="$PROJECT_DIR$/IdleReader.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/retrofit.iml" filepath="$PROJECT_DIR$/retrofit.iml" />
+      <module fileurl="file://C:\Users\xxc\Desktop\retrofit\IdleReader\retrofit.iml" filepath="C:\Users\xxc\Desktop\retrofit\IdleReader\retrofit.iml" />
     </modules>
   </component>
 </project>
