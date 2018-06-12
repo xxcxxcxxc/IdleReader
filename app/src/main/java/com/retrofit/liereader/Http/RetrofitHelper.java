@@ -2,6 +2,9 @@ package com.retrofit.liereader.Http;
 
 import com.retrofit.liereader.Bean.MoviesBean;
 import com.retrofit.liereader.Bean.NewsBean;
+import com.retrofit.liereader.Bean.TodayBean;
+import com.retrofit.liereader.Bean.VideoUrlBean;
+
 import java.util.concurrent.TimeUnit;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -33,6 +36,13 @@ public class RetrofitHelper {
     public Observable<MoviesBean> getMovies(String total) {
         return retrofitService.getMovie(total);
     }
+    public Observable<TodayBean> getToday(String category) {
+        return retrofitService.getToday(category);
+    }
+    public Observable<VideoUrlBean> getVideoUrl(String api) {
+        return retrofitService.getVideoUrl(api);
+    }
+
 
     public OkHttpClient getOkHttpClient() {
         if (okHttpClient==null){
