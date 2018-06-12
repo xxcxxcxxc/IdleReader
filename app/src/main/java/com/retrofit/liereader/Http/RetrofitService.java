@@ -5,6 +5,7 @@ import com.retrofit.liereader.Bean.MoviesBean;
 import com.retrofit.liereader.Bean.NewsBean;
 import com.retrofit.liereader.Bean.TodayBean;
 import com.retrofit.liereader.Bean.VideoUrlBean;
+import com.retrofit.liereader.Bean.WeatherBean;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -39,4 +40,9 @@ public interface RetrofitService {
 
     @GET
     Observable<VideoUrlBean> getVideoUrl(@Url String url);
+
+   /* http://wthrcdn.etouch.cn/weather_mini?citykey=101010100*/
+   @GET("weather_mini")
+   Observable<WeatherBean> getWeather(@Query("citykey") Integer citykey);
+
 }

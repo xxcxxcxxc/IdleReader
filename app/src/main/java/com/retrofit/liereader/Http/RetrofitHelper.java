@@ -4,6 +4,7 @@ import com.retrofit.liereader.Bean.MoviesBean;
 import com.retrofit.liereader.Bean.NewsBean;
 import com.retrofit.liereader.Bean.TodayBean;
 import com.retrofit.liereader.Bean.VideoUrlBean;
+import com.retrofit.liereader.Bean.WeatherBean;
 
 import java.util.concurrent.TimeUnit;
 import okhttp3.OkHttpClient;
@@ -41,6 +42,11 @@ public class RetrofitHelper {
     }
     public Observable<VideoUrlBean> getVideoUrl(String api) {
         return retrofitService.getVideoUrl(api);
+    }
+
+
+    public Observable<WeatherBean> getWeather(Integer citykey) {
+        return retrofitService.getWeather(citykey);
     }
 
 
