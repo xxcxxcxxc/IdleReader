@@ -26,8 +26,11 @@ public interface RetrofitService {
                                  @Path("id") String id,
                                  @Path("startPage") int startPage);
 
+    /*https://api.douban.com/v2/movie/in_theaters?start=20*/
+
     @GET("/v2/movie/{total}")
-    Observable<MoviesBean> getMovie(@Path("total") String total);
+    Observable<MoviesBean> getMovie(@Path("total") String total,
+                                    @Query("start") int start);
     /*
      http://is.snssdk.com/api/news/feed/v51/?category=video
     */

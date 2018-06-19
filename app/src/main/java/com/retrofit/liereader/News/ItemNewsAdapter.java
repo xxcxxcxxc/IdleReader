@@ -22,7 +22,7 @@ import java.util.List;
  * Created by xxc on 2018/5/27.
  */
 
-public class ItemNewsAdapter extends RecyclerView.Adapter<ItemNewsAdapter.ItemNewsHolder> {
+public class ItemNewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<NewsBean.Bean> objects = new ArrayList<NewsBean.Bean>();
 
@@ -36,41 +36,63 @@ public class ItemNewsAdapter extends RecyclerView.Adapter<ItemNewsAdapter.ItemNe
         this.objects = objects;
     }
 
-    @Override
-    public ItemNewsHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_news, parent, false);
-        return new ItemNewsHolder(view);
+    public  void addData(List<NewsBean.Bean> newObjects){
+        objects.addAll(newObjects);
     }
 
     @Override
-    public void onBindViewHolder(ItemNewsHolder holder, int position) {
-        final NewsBean.Bean bean = objects.get(position);
-        if (bean == null) {
-            return;
+    public int getItemViewType(int position) {
+        if (position + 1 == getItemCount()){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if (viewType == 0){
+            View view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.item_news, parent, false);
+            return new ItemNewsHolder(view);
+        }else{
+            View view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.footer, parent, false);
+            return new FooterHolder(view);
         }
 
-        //这里面的图片加载用到的是Glide,这是谷歌推荐的图片加载库，加载速度快，引用也很简单。只需下面3行代码就能用。
-        Glide.with(context)
-                .load(bean.getImgsrc())
-                .into(holder.ivNewsImg);
+    }
 
-        //中间对控件的处理也是基于api返回的数据（网易新闻接口会图片新闻的数据），这里只是做了个简单的处理，具体优化还需要进一步分析接口数据。
-        if (position == 0) {
-            holder.tvNewsDigest.setVisibility(View.GONE);
-            holder.tvNewsTitle.setText("图片：" + bean.getTitle());
-        } else {
-            holder.tvNewsTitle.setText(bean.getTitle());
-            holder.tvNewsDigest.setText(bean.getMtime() + " : " + bean.getDigest());
-            holder.cvNews.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(context, ADetailActivity.class);
-                    intent.putExtra("url",bean.getUrl());
-                    intent.putExtra("title",bean.getTitle());
-                    context.startActivity(intent);
-                }
-            });
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof ItemNewsHolder) {
+            final NewsBean.Bean bean = objects.get(position);
+            if (bean == null) {
+                return;
+            }
+
+            //这里面的图片加载用到的是Glide,这是谷歌推荐的图片加载库，加载速度快，引用也很简单。只需下面3行代码就能用。
+            Glide.with(context)
+                    .load(bean.getImgsrc())
+                    .into(((ItemNewsHolder) holder).ivNewsImg);
+
+            //中间对控件的处理也是基于api返回的数据（网易新闻接口会图片新闻的数据），这里只是做了个简单的处理，具体优化还需要进一步分析接口数据。
+            if (position == 0) {
+                ((ItemNewsHolder) holder).tvNewsDigest.setVisibility(View.GONE);
+                ((ItemNewsHolder) holder).tvNewsTitle.setText("图片：" + bean.getTitle());
+            } else {
+                ((ItemNewsHolder) holder).tvNewsTitle.setText(bean.getTitle());
+                ((ItemNewsHolder) holder).tvNewsDigest.setText(bean.getMtime() + " : " + bean.getDigest());
+                ((ItemNewsHolder) holder).cvNews.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(context, ADetailActivity.class);
+                        intent.putExtra("url", bean.getUrl());
+                        intent.putExtra("title", bean.getTitle());
+                        context.startActivity(intent);
+                    }
+                });
+            }
         }
     }
 
@@ -97,6 +119,11 @@ public class ItemNewsAdapter extends RecyclerView.Adapter<ItemNewsAdapter.ItemNe
             tvNewsTitle = (TextView) view.findViewById(R.id.tv_news_title);
             tvNewsDigest = (TextView) view.findViewById(R.id.tv_news_digest);
             cvNews = (CardView) view.findViewById(R.id.cv_news);
+        }
+    }
+    protected class FooterHolder extends  RecyclerView.ViewHolder{
+        public  FooterHolder(View itemView){
+            super(itemView);
         }
     }
 }

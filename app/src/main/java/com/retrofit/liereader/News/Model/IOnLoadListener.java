@@ -8,6 +8,8 @@ import com.retrofit.liereader.Bean.NewsBean;
 
 public interface IOnLoadListener {
     void success(NewsBean newsBean);
-    void fail(String error);
+    void fail(Throwable throwable);
+
+    void loadMoreSuccess(NewsBean newsBean);
 }
 

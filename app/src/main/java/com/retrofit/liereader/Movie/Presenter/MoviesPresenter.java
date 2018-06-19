@@ -23,7 +23,7 @@ public class MoviesPresenter implements IMoviesPresenter,IOnLoadListener {
     @Override
     public void success(MoviesBean moviesBean) {
         iMoviesView.hideDialog();
-        iMoviesView.showNews(moviesBean);
+        iMoviesView.showMovies(moviesBean);
     }
 
 
@@ -34,10 +34,22 @@ public class MoviesPresenter implements IMoviesPresenter,IOnLoadListener {
     }
 
     @Override
-    public void loadNews(String total) {
-        iMoviesView.showDialog();
-        iMoviesModel.loadNews(total,this);
+    public void loadMovies(String total,int start) {
+        if (start == 0){
+            iMoviesView.showDialog();
+
+        }
+        iMoviesModel.loadMovies(total,start,this);
+
+
+
 
     }
+    @Override
+    public void loadMoreSuccess(MoviesBean moviesBean) {
+        iMoviesView.hideDialog();
+        iMoviesView.showMoreMovies(moviesBean);
+    }
+
 
 }

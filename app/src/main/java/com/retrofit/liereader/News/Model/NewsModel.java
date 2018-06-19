@@ -33,13 +33,18 @@ public class NewsModel implements INewsModel {
 
                     @Override
                     public void onError(Throwable e) {
-                        iOnLoadListener.fail(e.getMessage());
+                        iOnLoadListener.fail(e);
 
                     }
 
                     @Override
                     public void onNext(NewsBean newsBean) {
-                        iOnLoadListener.success(newsBean);
+                        if (startPage != 0){
+                            iOnLoadListener.loadMoreSuccess(newsBean);
+                        }else{
+                            iOnLoadListener.success(newsBean);
+                        }
+
             }
         });
     }

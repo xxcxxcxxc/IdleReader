@@ -7,5 +7,8 @@ package com.retrofit.liereader.Movie.Model;
  */
 
 public interface IMoviesModel {
-    void loadNews(String total, IOnLoadListener iOnLoadListener);
+    void loadMovies(String total,
+                    int start,
+                    IOnLoadListener iOnLoadListener);
+
 }

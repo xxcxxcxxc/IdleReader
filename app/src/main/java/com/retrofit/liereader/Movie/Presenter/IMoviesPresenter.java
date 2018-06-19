@@ -5,6 +5,6 @@ package com.retrofit.liereader.Movie.Presenter;
  */
 
 public interface IMoviesPresenter {
-    void loadNews(String total);
+    void loadMovies(String total,int start);
 
 }

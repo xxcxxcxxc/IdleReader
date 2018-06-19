@@ -7,7 +7,8 @@ import com.retrofit.liereader.Bean.MoviesBean;
  */
 
 public interface IMoviesView {
-    void showNews(MoviesBean moviesBean);
+    void showMovies(MoviesBean moviesBean);
+    void showMoreMovies(MoviesBean moviesBean);
     void hideDialog();
     void showDialog();
     void showErrorMsg(Throwable throwable);

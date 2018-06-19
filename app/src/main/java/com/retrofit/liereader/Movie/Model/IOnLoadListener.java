@@ -9,4 +9,6 @@ import com.retrofit.liereader.Bean.MoviesBean;
 public interface IOnLoadListener {
     void success(MoviesBean moviesBean);
     void fail(Throwable throwable);
+
+    void loadMoreSuccess(MoviesBean moviesBean);
 }
